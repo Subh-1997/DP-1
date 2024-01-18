@@ -1,0 +1,77 @@
+1.Climbing Stairs
+
+class Solution {
+    public int climbStairs(int n) {
+      if(n==1)return 1;
+
+      int ways[]=new int[n+1];
+      ways[1]=1;
+      ways[2]=2;
+
+      for(int i=3;i<=n;i++){
+          ways[i]=ways[i-1]+ways[i-2];
+      }
+      return ways[n];
+    // int memo[]=new int[n+1];
+
+    // if(n<=2)
+    // return n;
+
+    // if(memo[n]!=0)return memo[n];
+
+    // return memo[n]= climbStairs(n-1) +  climbStairs(n-2) ;
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Fibonacci Number
+
+class Solution {
+    public int fib(int n) {
+    int store[] = new int[n+1];
+      if(n<=1){
+          return n;
+      }
+      store[0] = 0;
+      store[1] = 1;
+
+      for(int i= 2; i<=n ;i++){
+          store[i]=store[i-1] + store[i-2];
+      }
+      return store[n];
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Perfect Squares
+
+class Solution {
+    public int solve(int n, int arr[]) {
+        if (n == 0) {
+            return 0;
+        }
+        int ans = 12;
+        for (int i = 1; i * i <= n; i++) {
+            int k = solve(n - i * i, arr);
+            ans = Math.min(ans, k + 1);
+
+        }
+        arr[n] = ans;
+        return arr[n];
+    }
+
+    public int numSquares(int n) {
+        int arr[] = new int[n + 1];
+        // Arrays.fill(arr, -1);
+        // return solve(n, arr);
+        arr[0] = 0;
+        for (int i = 1; i <= n; i++) {
+            int ans = n;
+            for(int j=1; j*j<=i; j++){
+                ans = Math.min(ans,arr[i-j*j]);
+            }
+            arr[i]=1+ans;
+        }
+        return arr[n];
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.
